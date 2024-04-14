@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhd2unjfc825m"]
+
+[ext_resource type="Texture2D" uid="uid://paxppynu15t6" path="res://icon.svg" id="1_w1w44"]
+[ext_resource type="Texture2D" uid="uid://ctm5eu2jhc2ey" path="res://graphics/car/main.png" id="2_0iv1k"]
+[ext_resource type="PackedScene" uid="uid://vf7crhjqyh3u" path="res://scenes/objects/bed.tscn" id="3_htsim"]
+[ext_resource type="PackedScene" uid="uid://lp7ul8ykxmum" path="res://scenes/player/player.tscn" id="3_utppy"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(114, 102)
+texture = ExtResource("1_w1w44")
+
+[node name="Car" type="Sprite2D" parent="Logo"]
+position = Vector2(814, 277)
+texture = ExtResource("2_0iv1k")
+
+[node name="Bed" parent="." instance=ExtResource("3_htsim")]
+position = Vector2(50, 267)
+scale = Vector2(0.5, 0.5)
+
+[node name="Player" parent="." instance=ExtResource("3_utppy")]
+position = Vector2(248, 424)
