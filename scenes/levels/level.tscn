@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhd2unjfc825m"]
+[gd_scene load_steps=3 format=3 uid="uid://bhd2unjfc825m"]
 
 [ext_resource type="Texture2D" uid="uid://paxppynu15t6" path="res://icon.svg" id="1_w1w44"]
+[ext_resource type="Script" path="res://scenes/Logo.cs" id="2_1skyj"]
 
 [node name="Level" type="Node2D"]
 
 [node name="Logo" type="Sprite2D" parent="."]
 texture = ExtResource("1_w1w44")
+script = ExtResource("2_1skyj")
