@@ -19,7 +19,10 @@ public partial class Logo : Sprite2D
 
 		//int testRotation = 45;
 		//RotationDegrees = testRotation;
-	}
+
+		Console.WriteLine(string.Join(", ", GetNode<Level>("..").TestArray));
+		GetNode<Level>("..").TestFunction();
+    }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
