@@ -10,7 +10,7 @@ size = Vector2(631, 366)
 [node name="Bed" type="StaticBody2D"]
 
 [node name="BedSprite" type="Sprite2D" parent="."]
-position = Vector2(441, 297)
+position = Vector2(-3, 5)
 texture = ExtResource("1_06dsq")
 
 [node name="LPillowSprite" type="Sprite2D" parent="BedSprite"]
@@ -22,5 +22,4 @@ position = Vector2(138, -2)
 texture = ExtResource("3_bhfm6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(441.5, 296)
 shape = SubResource("RectangleShape2D_vt4mc")
