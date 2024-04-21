@@ -1,22 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhd2unjfc825m"]
+[gd_scene load_steps=5 format=3 uid="uid://bhd2unjfc825m"]
 
 [ext_resource type="Script" path="res://scenes/levels/Level.cs" id="1_vbyvy"]
-[ext_resource type="PackedScene" uid="uid://4nk1rp17phgb" path="res://scenes/objects/box.tscn" id="4_2gttl"]
+[ext_resource type="Texture2D" uid="uid://bnmuv4vtwi6u2" path="res://graphics/objects/gate.png" id="3_yuhlb"]
 [ext_resource type="PackedScene" uid="uid://lp7ul8ykxmum" path="res://scenes/player/player.tscn" id="4_k1mc5"]
-[ext_resource type="PackedScene" uid="uid://vf7crhjqyh3u" path="res://scenes/objects/bed.tscn" id="5_rdgxs"]
-[ext_resource type="PackedScene" uid="uid://c7oug7kl8mkyg" path="res://scenes/enemies/drone.tscn" id="5_wo6sb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_em2p0"]
+size = Vector2(859, 187)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_vbyvy")
 
-[node name="Bed" parent="." instance=ExtResource("5_rdgxs")]
-position = Vector2(708, -49)
+[node name="Gate" type="StaticBody2D" parent="."]
+
+[node name="Gate" type="Sprite2D" parent="Gate"]
+position = Vector2(617, -517)
+texture = ExtResource("3_yuhlb")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Gate"]
+polygon = PackedVector2Array(-814, -1302, -814, -10, -801, 103, -718, 209, -608, 253, 241, 253, 252, 149, 299, 81, 1061, 81, 1097, 111, 1106, 143, 1108, 249, 1922, 259, 2055, 221, 2150, 128, 2173, 3, 2177, -1291)
+
+[node name="Area2D" type="Area2D" parent="Gate"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate/Area2D"]
+position = Vector2(680.5, 247.5)
+shape = SubResource("RectangleShape2D_em2p0")
 
 [node name="Player" parent="." instance=ExtResource("4_k1mc5")]
-position = Vector2(655, 346)
+position = Vector2(653, 391)
 
-[node name="Box" parent="." instance=ExtResource("4_2gttl")]
-position = Vector2(118, 562)
-
-[node name="Drone" parent="." instance=ExtResource("5_wo6sb")]
-position = Vector2(276, 339)
+[connection signal="body_entered" from="Gate/Area2D" to="." method="OnArea2DBodyEntered"]

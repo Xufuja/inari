@@ -19,4 +19,9 @@ public partial class Level : Node2D
       
     }
 
+    public void OnArea2DBodyEntered(PhysicsBody2D body)
+    {
+        Console.WriteLine("Entered!");
+    }
+
 }
