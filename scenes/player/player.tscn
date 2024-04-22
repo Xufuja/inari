@@ -15,3 +15,14 @@ texture = ExtResource("1_wpw17")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(-6.07541, 6.04875)
 shape = SubResource("CircleShape2D_ddwci")
+
+[node name="LaserTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="GrenadeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="LaserTimer" to="." method="OnLaserTimerTimeout"]
+[connection signal="timeout" from="GrenadeTimer" to="." method="OnGrenadeTimerTimeout"]
