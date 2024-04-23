@@ -6,8 +6,14 @@ public partial class Player : CharacterBody2D
 	private bool canLaser = true;
 	private bool canGrenade = true;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    [Signal]
+    public delegate void LaserFiredEventHandler();
+
+    [Signal]
+    public delegate void GrenadeFiredEventHandler();
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
 	}
 
@@ -20,18 +26,16 @@ public partial class Player : CharacterBody2D
 
 		if (Input.IsActionPressed("primary action") && canLaser)
 		{
-			Console.WriteLine("Laser shot!");
 			canLaser = false;
-
 			GetNode<Timer>("LaserTimer").Start();
-		}
+            EmitSignal(SignalName.LaserFired);
+        }
 
         if (Input.IsActionPressed("secondary action") && canGrenade)
         {
-            Console.WriteLine("Grenade shot!");
 			canGrenade = false;
-
             GetNode<Timer>("GrenadeTimer").Start();
+            EmitSignal(SignalName.GrenadeFired);
         }
     }
 
@@ -44,4 +48,5 @@ public partial class Player : CharacterBody2D
     {
         canGrenade = true;
     }
+
 }

@@ -19,14 +19,24 @@ public partial class Level : Node2D
       
     }
 
-    public void OnArea2DBodyEntered(PhysicsBody2D _body)
+    public void OnGatePlayerEntered(PhysicsBody2D body)
     {
-        Console.WriteLine("Entered!");
+        Console.WriteLine("Player Entered Gate!");
+        Console.WriteLine(body);
     }
 
-    public void OnArea2DBodyExited(PhysicsBody2D _body)
+    public void OnGatePlayerExited(PhysicsBody2D body)
     {
-        Console.WriteLine("Exited!");
+        Console.WriteLine("Player Exited Gate!");
     }
 
+    public void OnLaserFired()
+    {
+        Console.WriteLine("Laser Fired!");
+    }
+
+    public void OnGrenadeFired()
+    {
+        Console.WriteLine("Grenade Fired!");
+    }
 }

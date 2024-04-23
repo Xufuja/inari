@@ -1,32 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhd2unjfc825m"]
+[gd_scene load_steps=4 format=3 uid="uid://bhd2unjfc825m"]
 
 [ext_resource type="Script" path="res://scenes/levels/Level.cs" id="1_vbyvy"]
-[ext_resource type="Texture2D" uid="uid://bnmuv4vtwi6u2" path="res://graphics/objects/gate.png" id="3_yuhlb"]
+[ext_resource type="PackedScene" uid="uid://chcp2sx0tj4eu" path="res://scenes/objects/gate.tscn" id="2_w84wr"]
 [ext_resource type="PackedScene" uid="uid://lp7ul8ykxmum" path="res://scenes/player/player.tscn" id="4_k1mc5"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_em2p0"]
-size = Vector2(859, 187)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_vbyvy")
 
-[node name="Gate" type="StaticBody2D" parent="."]
-
-[node name="Gate" type="Sprite2D" parent="Gate"]
-position = Vector2(617, -517)
-texture = ExtResource("3_yuhlb")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Gate"]
-polygon = PackedVector2Array(-814, -1302, -814, -10, -801, 103, -718, 209, -608, 253, 241, 253, 252, 149, 299, 81, 1061, 81, 1097, 111, 1106, 143, 1108, 249, 1922, 259, 2055, 221, 2150, 128, 2173, 3, 2177, -1291)
-
-[node name="Area2D" type="Area2D" parent="Gate"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate/Area2D"]
-position = Vector2(680.5, 247.5)
-shape = SubResource("RectangleShape2D_em2p0")
+[node name="Gate" parent="." instance=ExtResource("2_w84wr")]
+position = Vector2(560, -671)
 
 [node name="Player" parent="." instance=ExtResource("4_k1mc5")]
 position = Vector2(658, 508)
 
-[connection signal="body_entered" from="Gate/Area2D" to="." method="OnArea2DBodyEntered"]
-[connection signal="body_exited" from="Gate/Area2D" to="." method="OnArea2DBodyExited"]
+[connection signal="PlayerEntered" from="Gate" to="." method="OnGatePlayerEntered"]
+[connection signal="PlayerExited" from="Gate" to="." method="OnGatePlayerExited"]
+[connection signal="GrenadeFired" from="Player" to="." method="OnGrenadeFired"]
+[connection signal="LaserFired" from="Player" to="." method="OnLaserFired"]
