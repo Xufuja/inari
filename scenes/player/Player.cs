@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class Player : CharacterBody2D
 {
@@ -7,7 +9,7 @@ public partial class Player : CharacterBody2D
 	private bool canGrenade = true;
 
     [Signal]
-    public delegate void LaserFiredEventHandler();
+    public delegate void LaserFiredEventHandler(Vector2 position);
 
     [Signal]
     public delegate void GrenadeFiredEventHandler();
@@ -26,9 +28,12 @@ public partial class Player : CharacterBody2D
 
 		if (Input.IsActionPressed("primary action") && canLaser)
 		{
+			Godot.Collections.Array<Marker2D> laserMarkers = new Godot.Collections.Array<Marker2D>(GetNode<Node2D>("LaserStartPositions").GetChildren().OfType<Marker2D>());
+			Marker2D selectedLaser = laserMarkers[(int)(GD.Randi() % laserMarkers.Count)];
+
 			canLaser = false;
 			GetNode<Timer>("LaserTimer").Start();
-            EmitSignal(SignalName.LaserFired);
+            EmitSignal(SignalName.LaserFired, selectedLaser.GlobalPosition);
         }
 
         if (Input.IsActionPressed("secondary action") && canGrenade)

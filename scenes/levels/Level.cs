@@ -3,9 +3,7 @@ using System;
 
 public partial class Level : Node2D
 {
-	private string[] testArray = { "Test", "Hello", "Stuff" };
-
-    public string[] TestArray { get => testArray; set => testArray = value; }
+	private PackedScene laserScene = GD.Load<PackedScene>("res://scenes/projectiles/laser.tscn");
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -30,9 +28,13 @@ public partial class Level : Node2D
         Console.WriteLine("Player Exited Gate!");
     }
 
-    public void OnLaserFired()
+    public void OnLaserFired(Vector2 position)
     {
-        Console.WriteLine("Laser Fired!");
+        Node2D laser = laserScene.Instantiate<Node2D>();
+
+        laser.Position = position;
+        
+        AddChild(laser);
     }
 
     public void OnGrenadeFired()
