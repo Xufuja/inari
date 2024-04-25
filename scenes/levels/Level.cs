@@ -1,9 +1,11 @@
 using Godot;
 using System;
+using System.Reflection.Emit;
 
 public partial class Level : Node2D
 {
 	private PackedScene laserScene = GD.Load<PackedScene>("res://scenes/projectiles/laser.tscn");
+    private PackedScene grenadeScene = GD.Load<PackedScene>("res://scenes/projectiles/grenade.tscn");
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -33,12 +35,16 @@ public partial class Level : Node2D
         Node2D laser = laserScene.Instantiate<Node2D>();
 
         laser.Position = position;
-        
-        AddChild(laser);
+
+        GetNode<Node2D>("Projectiles").AddChild(laser);
     }
 
-    public void OnGrenadeFired()
+    public void OnGrenadeFired(Vector2 position)
     {
-        Console.WriteLine("Grenade Fired!");
+        Node2D grenade = grenadeScene.Instantiate<Node2D>();
+
+        grenade.Position = position;
+
+        GetNode<Node2D>("Projectiles").AddChild(grenade);
     }
 }

@@ -12,7 +12,7 @@ public partial class Player : CharacterBody2D
     public delegate void LaserFiredEventHandler(Vector2 position);
 
     [Signal]
-    public delegate void GrenadeFiredEventHandler();
+    public delegate void GrenadeFiredEventHandler(Vector2 position);
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -38,9 +38,11 @@ public partial class Player : CharacterBody2D
 
         if (Input.IsActionPressed("secondary action") && canGrenade)
         {
-			canGrenade = false;
+            Vector2 position = GetNode<Node2D>("LaserStartPositions").GetChild<Marker2D>(0).GlobalPosition;
+
+            canGrenade = false;
             GetNode<Timer>("GrenadeTimer").Start();
-            EmitSignal(SignalName.GrenadeFired);
+            EmitSignal(SignalName.GrenadeFired, position);
         }
     }
 
