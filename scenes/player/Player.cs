@@ -9,10 +9,10 @@ public partial class Player : CharacterBody2D
 	private bool canGrenade = true;
 
     [Signal]
-    public delegate void LaserFiredEventHandler(Vector2 position);
+    public delegate void LaserFiredEventHandler(Vector2 position, Vector2 direction);
 
     [Signal]
-    public delegate void GrenadeFiredEventHandler(Vector2 position);
+    public delegate void GrenadeFiredEventHandler(Vector2 position, Vector2 direction);
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -26,14 +26,18 @@ public partial class Player : CharacterBody2D
 		Velocity = new Vector2(direction.X * 500, direction.Y * 500);
 		MoveAndSlide();
 
-		if (Input.IsActionPressed("primary action") && canLaser)
+        LookAt(GetGlobalMousePosition());
+
+        Vector2 playerDirection = (GetGlobalMousePosition() - Position).Normalized();
+
+        if (Input.IsActionPressed("primary action") && canLaser)
 		{
 			Godot.Collections.Array<Marker2D> laserMarkers = new Godot.Collections.Array<Marker2D>(GetNode<Node2D>("LaserStartPositions").GetChildren().OfType<Marker2D>());
 			Marker2D selectedLaser = laserMarkers[(int)(GD.Randi() % laserMarkers.Count)];
 
 			canLaser = false;
 			GetNode<Timer>("LaserTimer").Start();
-            EmitSignal(SignalName.LaserFired, selectedLaser.GlobalPosition);
+            EmitSignal(SignalName.LaserFired, selectedLaser.GlobalPosition, playerDirection);
         }
 
         if (Input.IsActionPressed("secondary action") && canGrenade)
@@ -42,7 +46,7 @@ public partial class Player : CharacterBody2D
 
             canGrenade = false;
             GetNode<Timer>("GrenadeTimer").Start();
-            EmitSignal(SignalName.GrenadeFired, position);
+            EmitSignal(SignalName.GrenadeFired, position, playerDirection);
         }
     }
 

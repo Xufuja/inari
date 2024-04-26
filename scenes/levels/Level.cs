@@ -2,6 +2,8 @@ using Godot;
 using System;
 using System.Reflection.Emit;
 
+using static Godot.Mathf;
+
 public partial class Level : Node2D
 {
 	private PackedScene laserScene = GD.Load<PackedScene>("res://scenes/projectiles/laser.tscn");
@@ -30,20 +32,23 @@ public partial class Level : Node2D
         Console.WriteLine("Player Exited Gate!");
     }
 
-    public void OnLaserFired(Vector2 position)
+    public void OnLaserFired(Vector2 position, Vector2 direction)
     {
-        Node2D laser = laserScene.Instantiate<Node2D>();
+        Laser laser = laserScene.Instantiate<Laser>();
 
         laser.Position = position;
+        laser.RotationDegrees = RadToDeg(direction.Angle()) + 90;
+        laser.Direction = direction;
 
         GetNode<Node2D>("Projectiles").AddChild(laser);
     }
 
-    public void OnGrenadeFired(Vector2 position)
+    public void OnGrenadeFired(Vector2 position, Vector2 direction)
     {
-        Node2D grenade = grenadeScene.Instantiate<Node2D>();
+        RigidBody2D grenade = grenadeScene.Instantiate<RigidBody2D>();
 
         grenade.Position = position;
+        grenade.LinearVelocity = new Vector2(direction.X * Grenade.speed, direction.Y * Grenade.speed);
 
         GetNode<Node2D>("Projectiles").AddChild(grenade);
     }
