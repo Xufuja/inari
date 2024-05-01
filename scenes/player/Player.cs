@@ -32,7 +32,9 @@ public partial class Player : CharacterBody2D
 
         if (Input.IsActionPressed("primary action") && canLaser)
 		{
-			Godot.Collections.Array<Marker2D> laserMarkers = new Godot.Collections.Array<Marker2D>(GetNode<Node2D>("LaserStartPositions").GetChildren().OfType<Marker2D>());
+            GetNode<GpuParticles2D>("GPUParticles2D").Emitting = true;
+
+            Godot.Collections.Array<Marker2D> laserMarkers = new Godot.Collections.Array<Marker2D>(GetNode<Node2D>("LaserStartPositions").GetChildren().OfType<Marker2D>());
 			Marker2D selectedLaser = laserMarkers[(int)(GD.Randi() % laserMarkers.Count)];
 
 			canLaser = false;
