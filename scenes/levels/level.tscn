@@ -106,7 +106,7 @@ rotation = 3.83972
 [node name="LightFanAnimation" parent="Ground" instance=ExtResource("11_5wvu0")]
 position = Vector2(-1745, 2390)
 autoplay = "default"
-frame_progress = 0.349815
+frame_progress = 0.0586865
 
 [node name="SteamVent" parent="." instance=ExtResource("11_t7o45")]
 position = Vector2(-120, 411)
