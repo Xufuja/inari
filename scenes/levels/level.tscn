@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bhd2unjfc825m"]
+[gd_scene load_steps=18 format=3 uid="uid://bhd2unjfc825m"]
 
 [ext_resource type="Script" path="res://scenes/levels/Level.cs" id="1_vbyvy"]
 [ext_resource type="Texture2D" uid="uid://cq5iguacdh357" path="res://graphics/ground/stones.png" id="2_v5x82"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bg41oueax73e8" path="res://graphics/tilesets/outside_walls.png" id="8_3vv2j"]
 [ext_resource type="Texture2D" uid="uid://dmf83uijqni6c" path="res://graphics/tilesets/soil.png" id="9_y0rc6"]
 [ext_resource type="PackedScene" uid="uid://03c3xoyfi3ao" path="res://scenes/houses/house.tscn" id="10_exd1q"]
+[ext_resource type="PackedScene" uid="uid://cmk8bi8jq0ack" path="res://scenes/objects/light_fan_animation.tscn" id="11_5wvu0"]
 [ext_resource type="PackedScene" uid="uid://cg206r6eyaj8r" path="res://scenes/objects/steam_vent.tscn" id="11_t7o45"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sta1n"]
@@ -102,11 +103,17 @@ texture = ExtResource("5_jkm5b")
 position = Vector2(-1527, 3038)
 rotation = 3.83972
 
+[node name="LightFanAnimation" parent="Ground" instance=ExtResource("11_5wvu0")]
+position = Vector2(-1745, 2390)
+autoplay = "default"
+frame_progress = 0.349815
+
 [node name="SteamVent" parent="." instance=ExtResource("11_t7o45")]
 position = Vector2(-120, 411)
 
 [node name="Gate" parent="." instance=ExtResource("2_w84wr")]
 position = Vector2(560, -671)
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("4_k1mc5")]
 position = Vector2(658, 508)
@@ -116,6 +123,7 @@ zoom = Vector2(0.6, 0.6)
 position_smoothing_enabled = true
 
 [node name="Projectiles" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [connection signal="PlayerEntered" from="Gate" to="." method="OnGatePlayerEntered"]
 [connection signal="PlayerExited" from="Gate" to="." method="OnGatePlayerExited"]
