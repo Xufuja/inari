@@ -14,4 +14,9 @@ public partial class Grenade : RigidBody2D
 	public override void _Process(double delta)
 	{
     }
+
+	public void Explode()
+	{
+		GetNode<AnimationPlayer>("AnimationPlayer").Play("Explosion");
+	}
 }
