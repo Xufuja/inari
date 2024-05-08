@@ -52,4 +52,14 @@ public partial class Level : Node2D
 
         GetNode<Node2D>("Projectiles").AddChild(grenade);
     }
+
+    public void OnHousePlayerEntered()
+    {
+        GetTree().CreateTween().TweenProperty(GetNode("Player/Camera2D"), "zoom", new Vector2(1, 1), 1);
+    }
+
+    public void OnHousePlayerExited()
+    {
+        GetTree().CreateTween().TweenProperty(GetNode("Player/Camera2D"), "zoom", new Vector2(0.6f, 0.6f), 2);
+    }
 }
