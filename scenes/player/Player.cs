@@ -5,7 +5,10 @@ using System.Linq;
 
 public partial class Player : CharacterBody2D
 {
-	private bool canLaser = true;
+    [Export]
+    private int maxSpeed = 500;
+    private int speed;
+    private bool canLaser = true;
 	private bool canGrenade = true;
 
     [Signal]
@@ -17,13 +20,14 @@ public partial class Player : CharacterBody2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
+        speed = maxSpeed;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double _delta)
 	{
 		Vector2 direction = Input.GetVector("left", "right", "up", "down");
-		Velocity = new Vector2(direction.X * 500, direction.Y * 500);
+		Velocity = new Vector2(direction.X * speed, direction.Y * speed);
 		MoveAndSlide();
 
         LookAt(GetGlobalMousePosition());

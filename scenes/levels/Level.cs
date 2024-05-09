@@ -21,10 +21,10 @@ public partial class Level : Node2D
       
     }
 
-    public void OnGatePlayerEntered(PhysicsBody2D body)
+    public void OnGatePlayerEntered(PhysicsBody2D _body)
     {
-        Console.WriteLine("Player Entered Gate!");
-        Console.WriteLine(body);
+        Tween tween = CreateTween();
+        tween.TweenProperty(GetNode("Player"), "speed", 0, 0.5f);
     }
 
     public void OnGatePlayerExited(PhysicsBody2D body)
@@ -55,7 +55,10 @@ public partial class Level : Node2D
 
     public void OnHousePlayerEntered()
     {
-        GetTree().CreateTween().TweenProperty(GetNode("Player/Camera2D"), "zoom", new Vector2(1, 1), 1);
+        Tween tween = GetTree().CreateTween();
+        tween.SetParallel(true);
+        tween.TweenProperty(GetNode("Player/Camera2D"), "zoom", new Vector2(1, 1), 1).SetTrans(Tween.TransitionType.Quad);
+        //tween.TweenProperty(GetNode("Player"), "modulate:a", 0f, 2).From(0.5f);
     }
 
     public void OnHousePlayerExited()
