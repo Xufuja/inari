@@ -19,4 +19,13 @@ public partial class Laser : Area2D
     {
         Position += new Vector2((float)(direction.X * speed * delta), (float)(direction.Y * speed * delta));
     }
+
+    public void OnBodyEntered(Node2D body)
+    {
+        if (body.GetType() == typeof(Drone))
+        {
+            ((Drone)body).Hit();
+        }
+        QueueFree();
+    }
 }

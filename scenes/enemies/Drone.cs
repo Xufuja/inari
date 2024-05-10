@@ -9,4 +9,9 @@ public partial class Drone : CharacterBody2D
         Velocity = new Vector2(direction.X * 100, direction.Y);
         MoveAndSlide();
     }
+
+    public void Hit()
+    {
+        Console.WriteLine("Damage");
+    }
 }
