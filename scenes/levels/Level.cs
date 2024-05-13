@@ -21,12 +21,7 @@ public partial class Level : Node2D
       
     }
 
-    public void OnGatePlayerEntered(PhysicsBody2D _body)
-    {
-        Tween tween = CreateTween();
-        tween.TweenProperty(GetNode("Player"), "speed", 0, 0.5f);
-    }
-
+   
     public void OnGatePlayerExited(PhysicsBody2D body)
     {
         Console.WriteLine("Player Exited Gate!");
