@@ -8,15 +8,15 @@ script = ExtResource("1_vbyvy")
 
 [node name="Ground" type="Node2D" parent="."]
 
+[node name="Projectiles" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
 [node name="Player" parent="." instance=ExtResource("4_k1mc5")]
 position = Vector2(658, 508)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.6, 0.6)
 position_smoothing_enabled = true
-
-[node name="Projectiles" type="Node2D" parent="."]
-metadata/_edit_lock_ = true
 
 [connection signal="GrenadeFired" from="Player" to="." method="OnGrenadeFired"]
 [connection signal="LaserFired" from="Player" to="." method="OnLaserFired"]

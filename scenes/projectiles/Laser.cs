@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Reflection;
 
 public partial class Laser : Area2D
 {
@@ -23,9 +24,16 @@ public partial class Laser : Area2D
 
     public void OnBodyEntered(Node2D body)
     {
-        if (body.GetType() == typeof(Drone))
+        if (body.HasMethod("Hit"))
         {
-            ((Drone)body).Hit();
+            Type type = body.GetType();
+
+            MethodInfo methodInfo = type.GetMethod("Hit");
+
+            if (methodInfo != null)
+            {
+                methodInfo.Invoke(body, null);
+            }
         }
         QueueFree();
     }
