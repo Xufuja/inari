@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://lsay2e0ca8qv"]
+[gd_scene load_steps=18 format=3 uid="uid://lsay2e0ca8qv"]
 
 [ext_resource type="PackedScene" uid="uid://bhd2unjfc825m" path="res://scenes/levels/level.tscn" id="1_gxgr5"]
 [ext_resource type="PackedScene" uid="uid://chcp2sx0tj4eu" path="res://scenes/objects/gate.tscn" id="2_akg83"]
@@ -14,8 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://03c3xoyfi3ao" path="res://scenes/houses/house.tscn" id="10_e7oly"]
 [ext_resource type="PackedScene" uid="uid://cg206r6eyaj8r" path="res://scenes/objects/steam_vent.tscn" id="11_r58k6"]
 [ext_resource type="PackedScene" uid="uid://cmk8bi8jq0ack" path="res://scenes/objects/light_fan_animation.tscn" id="12_bue8s"]
-[ext_resource type="PackedScene" uid="uid://bu2cx1ykkvvxa" path="res://scenes/container/toilet_container.tscn" id="15_qoy18"]
-[ext_resource type="PackedScene" uid="uid://da38lyg16ibtw" path="res://scenes/container/box_container.tscn" id="16_g414c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sta1n"]
 resource_name = "Walls"
@@ -109,17 +107,13 @@ position = Vector2(-120, 411)
 
 [node name="LightFanAnimation" parent="Ground" index="11" instance=ExtResource("12_bue8s")]
 position = Vector2(-1745, 2390)
-autoplay = "default"
 frame_progress = 0.0586865
 
 [node name="Gate" parent="." index="1" instance=ExtResource("2_akg83")]
 position = Vector2(561, -665)
 metadata/_edit_lock_ = true
 
-[node name="ToiletContainer" parent="." index="4" instance=ExtResource("15_qoy18")]
-position = Vector2(1025, 830)
-
-[node name="BoxContainer" parent="." index="5" instance=ExtResource("16_g414c")]
-position = Vector2(1368, 480)
+[node name="Player" parent="." index="3"]
+position = Vector2(604, 313)
 
 [connection signal="PlayerEntered" from="Gate" to="." method="OnGatePlayerEntered"]

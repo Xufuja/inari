@@ -3,8 +3,11 @@ using System;
 
 public partial class Inside : Level
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    [Export]
+    private PackedScene outsideLevelScene;
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
 	}
 
@@ -17,5 +20,7 @@ public partial class Inside : Level
 	{
         Tween tween = CreateTween();
         tween.TweenProperty(GetNode("Player"), "speed", 0, 0.5f);
+
+		GetTree().ChangeSceneToPacked(outsideLevelScene);
     }
 }

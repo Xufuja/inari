@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://c5klibbkwsaq1"]
+[gd_scene load_steps=14 format=3 uid="uid://c5klibbkwsaq1"]
 
 [ext_resource type="PackedScene" uid="uid://bhd2unjfc825m" path="res://scenes/levels/level.tscn" id="1_hek13"]
 [ext_resource type="TileSet" uid="uid://bt08uu0emdn03" path="res://scenes/levels/house.tres" id="2_7pwkj"]
 [ext_resource type="Texture2D" uid="uid://duvgbyp10884g" path="res://graphics/ground/dirt.png" id="2_spsem"]
 [ext_resource type="Script" path="res://scenes/levels/Inside.cs" id="2_vkx4k"]
+[ext_resource type="PackedScene" uid="uid://lsay2e0ca8qv" path="res://scenes/levels/outside.tscn" id="3_3bs5t"]
 [ext_resource type="PackedScene" uid="uid://cmi1sxcqhfyit" path="res://scenes/objects/wall_light.tscn" id="4_5su0o"]
 [ext_resource type="PackedScene" uid="uid://cmk8bi8jq0ack" path="res://scenes/objects/light_fan_animation.tscn" id="4_l5peq"]
 [ext_resource type="PackedScene" uid="uid://liccjl1xe54j" path="res://scenes/objects/simple_light.tscn" id="5_228al"]
@@ -17,6 +18,7 @@ size = Vector2(366, 753)
 
 [node name="Inside" instance=ExtResource("1_hek13")]
 script = ExtResource("2_vkx4k")
+outsideLevelScene = ExtResource("3_3bs5t")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground" index="0"]
 texture_repeat = 2
