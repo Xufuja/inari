@@ -36,6 +36,7 @@ public partial class Level : Node2D
         laser.Direction = direction;
 
         GetNode<Node2D>("Projectiles").AddChild(laser);
+        GetNode<UI>("UI").UpdateLaserText(); 
     }
 
     public void OnGrenadeFired(Vector2 position, Vector2 direction)

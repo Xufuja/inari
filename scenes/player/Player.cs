@@ -34,8 +34,10 @@ public partial class Player : CharacterBody2D
 
         Vector2 playerDirection = (GetGlobalMousePosition() - Position).Normalized();
 
-        if (Input.IsActionPressed("primary action") && canLaser)
+        if (Input.IsActionPressed("primary action") && canLaser && Globals.laserAmount > 0)
 		{
+            Globals.laserAmount -= 1;
+
             GetNode<GpuParticles2D>("GPUParticles2D").Emitting = true;
 
             Godot.Collections.Array<Marker2D> laserMarkers = new Godot.Collections.Array<Marker2D>(GetNode<Node2D>("LaserStartPositions").GetChildren().OfType<Marker2D>());
