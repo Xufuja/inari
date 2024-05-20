@@ -36,7 +36,7 @@ public partial class Level : Node2D
         laser.Direction = direction;
 
         GetNode<Node2D>("Projectiles").AddChild(laser);
-        GetNode<UI>("UI").UpdateLaserText(); 
+        GetNode<UI>("UI").UpdateLaserText();
     }
 
     public void OnGrenadeFired(Vector2 position, Vector2 direction)
@@ -47,6 +47,7 @@ public partial class Level : Node2D
         grenade.LinearVelocity = new Vector2(direction.X * Grenade.speed, direction.Y * Grenade.speed);
 
         GetNode<Node2D>("Projectiles").AddChild(grenade);
+        GetNode<UI>("UI").UpdateGrenadeText();
     }
 
     public void OnHousePlayerEntered()

@@ -48,8 +48,10 @@ public partial class Player : CharacterBody2D
             EmitSignal(SignalName.LaserFired, selectedLaser.GlobalPosition, playerDirection);
         }
 
-        if (Input.IsActionPressed("secondary action") && canGrenade)
+        if (Input.IsActionPressed("secondary action") && canGrenade && Globals.grenadeAmount > 0)
         {
+            Globals.grenadeAmount -= 1;
+
             Vector2 position = GetNode<Node2D>("LaserStartPositions").GetChild<Marker2D>(0).GlobalPosition;
 
             canGrenade = false;

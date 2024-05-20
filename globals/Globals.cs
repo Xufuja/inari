@@ -4,6 +4,7 @@ using System;
 public partial class Globals : Node
 {
 	public static int laserAmount = 20;
+	public static int grenadeAmount = 5;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
