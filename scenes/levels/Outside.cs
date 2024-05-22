@@ -17,8 +17,9 @@ public partial class Outside : Level
     {
         Tween tween = CreateTween();
         tween.TweenProperty(GetNode("Player"), "speed", 0, 0.5f);
+		TransitionLayer transitionLayer = GetNode<TransitionLayer>("/root/TransitionLayer");
+		transitionLayer.ChangeScene("res://scenes/levels/inside.tscn");
 
-		GetTree().ChangeSceneToFile("res://scenes/levels/inside.tscn");
     }
 
 }
