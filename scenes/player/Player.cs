@@ -17,6 +17,9 @@ public partial class Player : CharacterBody2D
     [Signal]
     public delegate void GrenadeFiredEventHandler(Vector2 position, Vector2 direction);
 
+    [Signal]
+    public delegate void UpdateStatsEventHandler();
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
@@ -70,4 +73,27 @@ public partial class Player : CharacterBody2D
         canGrenade = true;
     }
 
+    public void AddItem(string type)
+    {
+        switch (type)
+        {
+            case "laser":
+                {
+                    Globals.laserAmount += 5;
+                    break;
+                }
+            case "grenade":
+                {
+                    Globals.grenadeAmount += 5;
+                    break;
+                }
+            case "health":
+                {
+                    GetNode<Sprite2D>("Sprite2D").Modulate = new Color(0.1f, 0.8f, 0.1f);
+                    break;
+                }
+        }
+
+        EmitSignal(SignalName.UpdateStats);
+    }
 }

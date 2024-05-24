@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://c5klibbkwsaq1"]
+[gd_scene load_steps=13 format=3 uid="uid://c5klibbkwsaq1"]
 
 [ext_resource type="PackedScene" uid="uid://bhd2unjfc825m" path="res://scenes/levels/level.tscn" id="1_hek13"]
 [ext_resource type="TileSet" uid="uid://bt08uu0emdn03" path="res://scenes/levels/house.tres" id="2_7pwkj"]
 [ext_resource type="Texture2D" uid="uid://duvgbyp10884g" path="res://graphics/ground/dirt.png" id="2_spsem"]
 [ext_resource type="Script" path="res://scenes/levels/Inside.cs" id="2_vkx4k"]
-[ext_resource type="PackedScene" uid="uid://lsay2e0ca8qv" path="res://scenes/levels/outside.tscn" id="3_3bs5t"]
 [ext_resource type="PackedScene" uid="uid://cmi1sxcqhfyit" path="res://scenes/objects/wall_light.tscn" id="4_5su0o"]
 [ext_resource type="PackedScene" uid="uid://cmk8bi8jq0ack" path="res://scenes/objects/light_fan_animation.tscn" id="4_l5peq"]
 [ext_resource type="PackedScene" uid="uid://liccjl1xe54j" path="res://scenes/objects/simple_light.tscn" id="5_228al"]
@@ -18,7 +17,6 @@ size = Vector2(366, 753)
 
 [node name="Inside" instance=ExtResource("1_hek13")]
 script = ExtResource("2_vkx4k")
-outsideLevelScene = ExtResource("3_3bs5t")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground" index="0"]
 texture_repeat = 2
@@ -78,29 +76,25 @@ texture_scale = 3.0
 
 [node name="Lights" parent="." index="3"]
 metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="LightFanAnimation" parent="Lights" index="0" instance=ExtResource("4_l5peq")]
 position = Vector2(3129, -413)
-metadata/_edit_lock_ = true
 
 [node name="LightFanAnimation2" parent="Lights" index="1" instance=ExtResource("4_l5peq")]
 position = Vector2(1170, -1818)
-metadata/_edit_lock_ = true
 
 [node name="LightFanAnimation3" parent="Lights" index="2" instance=ExtResource("4_l5peq")]
 position = Vector2(-1907, 3488)
-metadata/_edit_lock_ = true
 
 [node name="LightFanAnimation4" parent="Lights" index="3" instance=ExtResource("4_l5peq")]
 position = Vector2(1544, 5262)
-metadata/_edit_lock_ = true
 
 [node name="Infrastructure" type="Sprite2D" parent="Lights" index="4"]
 modulate = Color(1, 1, 1, 0.0392157)
 position = Vector2(2094, -171.25)
 scale = Vector2(2.016, 9.73327)
 texture = ExtResource("5_ioypq")
-metadata/_edit_lock_ = true
 
 [node name="Infrastructure2" type="Sprite2D" parent="Lights" index="5"]
 modulate = Color(1, 1, 1, 0.0392157)
@@ -108,49 +102,42 @@ position = Vector2(184.253, -1984.13)
 rotation = 1.57149
 scale = Vector2(6.12126, 8.23818)
 texture = ExtResource("5_ioypq")
-metadata/_edit_lock_ = true
 
 [node name="Hole" type="Sprite2D" parent="Lights" index="6"]
 modulate = Color(0.666667, 0.470588, 0.392157, 0.0784314)
 position = Vector2(537, -536)
 scale = Vector2(5.41166, 5.36612)
 texture = ExtResource("6_ddudy")
-metadata/_edit_lock_ = true
 
 [node name="Hole3" type="Sprite2D" parent="Lights" index="7"]
 modulate = Color(0.666667, 0.470588, 0.392157, 0.0784314)
 position = Vector2(-1887, 5252)
 scale = Vector2(5.41166, 5.36612)
 texture = ExtResource("6_ddudy")
-metadata/_edit_lock_ = true
 
 [node name="Hole2" type="Sprite2D" parent="Lights" index="8"]
 modulate = Color(0.666667, 0.470588, 0.392157, 0.0784314)
 position = Vector2(-1080, -1964)
 scale = Vector2(5.41166, 5.36612)
 texture = ExtResource("6_ddudy")
-metadata/_edit_lock_ = true
 
 [node name="Lattice" type="Sprite2D" parent="Lights" index="9"]
 modulate = Color(1, 1, 1, 0.0392157)
 position = Vector2(1344, 3493)
 scale = Vector2(4.65116, 11.3006)
 texture = ExtResource("7_dm2sg")
-metadata/_edit_lock_ = true
 
 [node name="Lattice3" type="Sprite2D" parent="Lights" index="10"]
 modulate = Color(1, 1, 1, 0.0392157)
 position = Vector2(-1016, 1365)
 scale = Vector2(4.65116, 14.0491)
 texture = ExtResource("7_dm2sg")
-metadata/_edit_lock_ = true
 
 [node name="Lattice2" type="Sprite2D" parent="Lights" index="11"]
 modulate = Color(1, 1, 1, 0.0392157)
 position = Vector2(-3954, 1328)
 scale = Vector2(4.65116, 11.3006)
 texture = ExtResource("7_dm2sg")
-metadata/_edit_lock_ = true
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." index="4"]
 color = Color(0.364706, 0.419608, 0.239216, 0.196078)

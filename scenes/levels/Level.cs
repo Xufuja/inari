@@ -62,4 +62,10 @@ public partial class Level : Node2D
     {
         GetTree().CreateTween().TweenProperty(GetNode("Player/Camera2D"), "zoom", new Vector2(0.6f, 0.6f), 2);
     }
+
+    public void OnPlayerUpdateStats()
+    {
+        GetNode<UI>("UI").UpdateLaserText();
+        GetNode<UI>("UI").UpdateGrenadeText();
+    }
 }

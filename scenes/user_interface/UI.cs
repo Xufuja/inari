@@ -43,12 +43,12 @@ public partial class UI : CanvasLayer
     {
         if (amount <= 0)
         {
-            label.Modulate = green;
-            icon.Modulate = green;
-        } else
-        {
             label.Modulate = red;
             icon.Modulate = red;
+        } else
+        {
+            label.Modulate = green;
+            icon.Modulate = green;
         }
     }
 }
