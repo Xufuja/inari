@@ -37,9 +37,9 @@ public partial class Player : CharacterBody2D
 
         Vector2 playerDirection = (GetGlobalMousePosition() - Position).Normalized();
 
-        if (Input.IsActionPressed("primary action") && canLaser && Globals.laserAmount > 0)
+        if (Input.IsActionPressed("primary action") && canLaser && GetNode<Globals>("/root/Globals").LaserAmount > 0)
 		{
-            Globals.laserAmount -= 1;
+            GetNode<Globals>("/root/Globals").LaserAmount -= 1;
 
             GetNode<GpuParticles2D>("GPUParticles2D").Emitting = true;
 
@@ -51,9 +51,9 @@ public partial class Player : CharacterBody2D
             EmitSignal(SignalName.LaserFired, selectedLaser.GlobalPosition, playerDirection);
         }
 
-        if (Input.IsActionPressed("secondary action") && canGrenade && Globals.grenadeAmount > 0)
+        if (Input.IsActionPressed("secondary action") && canGrenade && GetNode<Globals>("/root/Globals").GrenadeAmount > 0)
         {
-            Globals.grenadeAmount -= 1;
+            GetNode<Globals>("/root/Globals").GrenadeAmount -= 1;
 
             Vector2 position = GetNode<Node2D>("LaserStartPositions").GetChild<Marker2D>(0).GlobalPosition;
 
@@ -79,17 +79,17 @@ public partial class Player : CharacterBody2D
         {
             case "laser":
                 {
-                    Globals.laserAmount += 5;
+                    GetNode<Globals>("/root/Globals").LaserAmount += 5;
                     break;
                 }
             case "grenade":
                 {
-                    Globals.grenadeAmount += 5;
+                    GetNode<Globals>("/root/Globals").GrenadeAmount += 1;
                     break;
                 }
             case "health":
                 {
-                    GetNode<Sprite2D>("Sprite2D").Modulate = new Color(0.1f, 0.8f, 0.1f);
+                    GetNode<Globals>("/root/Globals").Health += 10;
                     break;
                 }
         }
