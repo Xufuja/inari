@@ -39,19 +39,25 @@ public partial class Item : Area2D
         Rotation += rotationSpeed * (float)delta;
     }
 
-    public void OnBodyEntered(PhysicsBody2D body)
+    public void OnBodyEntered(PhysicsBody2D _body)
     {
-        if (body.HasMethod("AddItem"))
+        switch (type)
         {
-            Type type = body.GetType();
-
-            MethodInfo methodInfo = type.GetMethod("AddItem");
-
-            if (methodInfo != null)
-            {
-                string[] parameters = new string[] { this.type };
-                methodInfo.Invoke(body, parameters);
-            }
+            case "laser":
+                {
+                    GetNode<Globals>("/root/Globals").LaserAmount += 5;
+                    break;
+                }
+            case "grenade":
+                {
+                    GetNode<Globals>("/root/Globals").GrenadeAmount += 1;
+                    break;
+                }
+            case "health":
+                {
+                    GetNode<Globals>("/root/Globals").Health += 10;
+                    break;
+                }
         }
 
         QueueFree();

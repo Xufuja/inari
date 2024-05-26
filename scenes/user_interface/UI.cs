@@ -3,7 +3,8 @@ using System;
 
 public partial class UI : CanvasLayer
 {
-	private Label laserLabel;
+    private Globals globals;
+    private Label laserLabel;
     private Label grenadeLabel;
     private TextureRect laserIcon;
     private TextureRect grenadeIcon;
@@ -14,8 +15,22 @@ public partial class UI : CanvasLayer
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
-	{
-        GetNode<Globals>("/root/Globals").HealthChange += UpdateHealthText;
+    {
+        globals = GetNode<Globals>("/root/Globals");
+
+        //The "new" way of connecting signals is bugged and will return "Cannot access a disposed object" errors: //https://github.com/godotengine/godot/issues/70414
+        if (Globals.CLASSIC_SIGNALS)
+        {
+            globals.Connect(nameof(globals.HealthChange), Callable.From(UpdateStatsText));
+            globals.Connect(nameof(globals.LaserAmountChange), Callable.From(UpdateStatsText));
+            globals.Connect(nameof(globals.GrenadeAmountChange), Callable.From(UpdateStatsText));
+        }
+        else
+        {
+            globals.HealthChange += UpdateStatsText;
+            globals.LaserAmountChange += UpdateStatsText;
+            globals.GrenadeAmountChange += UpdateStatsText;
+        }
 
         laserLabel = GetNode<Label>("LaserCounter/VBoxContainer/Label");
         grenadeLabel = GetNode<Label>("GrenadeCounter/VBoxContainer/Label");
@@ -23,26 +38,12 @@ public partial class UI : CanvasLayer
         grenadeIcon = GetNode<TextureRect>("GrenadeCounter/VBoxContainer/TextureRect");
         healthBar = GetNode<TextureProgressBar>("MarginContainer/TextureProgressBar");
 
-        UpdateLaserText();
-        UpdateGrenadeText();
-        UpdateHealthText();
+        UpdateStatsText();
     }
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-
-	public void UpdateLaserText()
-	{
-		laserLabel.Text = GetNode<Globals>("/root/Globals").LaserAmount.ToString();
-        UpdateColor(GetNode<Globals>("/root/Globals").LaserAmount, laserIcon, laserLabel);
-	}
-
-    public void UpdateGrenadeText()
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
     {
-        grenadeLabel.Text = GetNode<Globals>("/root/Globals").GrenadeAmount.ToString();
-        UpdateColor(GetNode<Globals>("/root/Globals").GrenadeAmount, grenadeIcon, grenadeLabel);
     }
 
     public void UpdateColor(int amount, TextureRect icon, Label label)
@@ -51,15 +52,22 @@ public partial class UI : CanvasLayer
         {
             label.Modulate = red;
             icon.Modulate = red;
-        } else
+        }
+        else
         {
             label.Modulate = green;
             icon.Modulate = green;
         }
     }
 
-    public void UpdateHealthText()
+    public void UpdateStatsText()
     {
-        healthBar.Value = GetNode<Globals>("/root/Globals").Health;
+        laserLabel.Text = globals.LaserAmount.ToString();
+        UpdateColor(globals.LaserAmount, laserIcon, laserLabel);
+
+        grenadeLabel.Text = globals.GrenadeAmount.ToString();
+        UpdateColor(globals.GrenadeAmount, grenadeIcon, grenadeLabel);
+
+        healthBar.Value = globals.Health;
     }
 }

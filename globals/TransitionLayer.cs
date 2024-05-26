@@ -3,8 +3,8 @@ using System;
 
 public partial class TransitionLayer : CanvasLayer
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
 	}
 
@@ -19,6 +19,6 @@ public partial class TransitionLayer : CanvasLayer
 		animationPlayer.Play("FadeToBlack");
         await ToSignal(animationPlayer, "animation_finished");
         GetTree().ChangeSceneToFile(target);
-		animationPlayer.PlayBackwards("FadeToBlack");
+        animationPlayer.PlayBackwards("FadeToBlack");
     }
 }

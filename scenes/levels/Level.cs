@@ -18,7 +18,7 @@ public partial class Level : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-      
+
     }
 
    
@@ -36,7 +36,7 @@ public partial class Level : Node2D
         laser.Direction = direction;
 
         GetNode<Node2D>("Projectiles").AddChild(laser);
-        GetNode<UI>("UI").UpdateLaserText();
+        GetNode<UI>("UI").UpdateStatsText();
     }
 
     public void OnGrenadeFired(Vector2 position, Vector2 direction)
@@ -47,7 +47,7 @@ public partial class Level : Node2D
         grenade.LinearVelocity = new Vector2(direction.X * Grenade.speed, direction.Y * Grenade.speed);
 
         GetNode<Node2D>("Projectiles").AddChild(grenade);
-        GetNode<UI>("UI").UpdateGrenadeText();
+        GetNode<UI>("UI").UpdateStatsText();
     }
 
     public void OnHousePlayerEntered()
@@ -63,9 +63,4 @@ public partial class Level : Node2D
         GetTree().CreateTween().TweenProperty(GetNode("Player/Camera2D"), "zoom", new Vector2(0.6f, 0.6f), 2);
     }
 
-    public void OnPlayerUpdateStats()
-    {
-        GetNode<UI>("UI").UpdateLaserText();
-        GetNode<UI>("UI").UpdateGrenadeText();
-    }
 }
