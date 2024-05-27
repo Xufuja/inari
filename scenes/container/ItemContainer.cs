@@ -14,9 +14,6 @@ public partial class ItemContainer : StaticBody2D
     public override void _Ready()
 	{
 		currentDirection = Vector2.Down.Rotated(Rotation);
-        Console.WriteLine(this.Name);
-        Console.WriteLine(this.CollisionLayer);
-        Console.WriteLine(this.CollisionMask);
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

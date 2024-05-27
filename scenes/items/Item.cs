@@ -54,12 +54,7 @@ public partial class Item : Area2D
 
     public void OnBodyEntered(PhysicsBody2D _body)
     {
-        Console.WriteLine(this.Name);
-        Console.WriteLine(this.CollisionLayer);
-        Console.WriteLine(this.CollisionMask);
-        Console.WriteLine(_body.Name);
-        Console.WriteLine(_body.CollisionLayer);
-        Console.WriteLine(_body.CollisionMask);
+        //Editing collission settings is broken for inherited scenes: https://github.com/godotengine/godot/issues/65193
 
         switch (type)
         {
