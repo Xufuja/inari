@@ -3,18 +3,17 @@ using System;
 
 public partial class BoxContainer : ItemContainer
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
-
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-	}
+
+    }
 
     public override void Hit()
     {
-        Console.WriteLine("Box");
+		GetNode<Sprite2D>("LidSprite").Hide();
+		Node2D spawnPositions = GetNode<Node2D>("SpawnPositions");
+		Vector2 position = spawnPositions.GetChild<Marker2D>((int)(GD.Randi() % spawnPositions.GetChildCount())).GlobalPosition;
+        EmitSignal(SignalName.Open, position, CurrentDirection);
     }
 }

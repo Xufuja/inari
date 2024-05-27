@@ -11,11 +11,65 @@ size = Vector2(402, 182)
 [node name="BoxContainer" instance=ExtResource("1_ubgfh")]
 script = ExtResource("2_ysigc")
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="BaseSprite" parent="." index="0"]
 texture = ExtResource("3_wb065")
 
-[node name="Sprite2D2" type="Sprite2D" parent="." index="1"]
+[node name="LidSprite" parent="." index="1"]
 texture = ExtResource("4_yokyd")
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource("RectangleShape2D_i6xjw")
+
+[node name="Marker2D" parent="SpawnPositions" index="0"]
+position = Vector2(27, 102)
+
+[node name="Marker2D2" parent="SpawnPositions" index="1"]
+position = Vector2(103, -99)
+
+[node name="Marker2D3" parent="SpawnPositions" index="2"]
+position = Vector2(60, -99)
+
+[node name="Marker2D4" parent="SpawnPositions" index="3"]
+position = Vector2(71, 100)
+
+[node name="Marker2D5" parent="SpawnPositions" index="4"]
+position = Vector2(106, 101)
+
+[node name="Marker2D6" parent="SpawnPositions" index="5"]
+position = Vector2(153, 100)
+
+[node name="Marker2D7" parent="SpawnPositions" index="6"]
+position = Vector2(143, -100)
+
+[node name="Marker2D8" parent="SpawnPositions" index="7"]
+position = Vector2(-19, -98)
+
+[node name="Marker2D9" parent="SpawnPositions" index="8"]
+position = Vector2(-66, 102)
+
+[node name="Marker2D10" parent="SpawnPositions" index="9"]
+position = Vector2(-115, 103)
+
+[node name="Marker2D11" parent="SpawnPositions" index="10"]
+position = Vector2(188, -7)
+
+[node name="Marker2D12" parent="SpawnPositions" index="11"]
+position = Vector2(-61, -98)
+
+[node name="Marker2D13" parent="SpawnPositions" index="12"]
+position = Vector2(-125, -95)
+
+[node name="Marker2D14" parent="SpawnPositions" index="13"]
+position = Vector2(18, -100)
+
+[node name="Marker2D15" parent="SpawnPositions" index="14"]
+position = Vector2(-21, 102)
+
+[node name="Marker2D16" parent="SpawnPositions" index="15"]
+position = Vector2(-203, 90)
+
+[node name="Marker2D17" parent="SpawnPositions" index="16"]
+position = Vector2(-209, 1)
+
+[node name="Marker2D18" parent="SpawnPositions" index="17"]
+position = Vector2(-208, -83)

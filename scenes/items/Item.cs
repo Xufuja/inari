@@ -7,10 +7,18 @@ public partial class Item : Area2D
     private int rotationSpeed = 4;
     private string[] availableOptions = { "laser", "laser", "laser", "laser", "grenade", "health" };
     private string type;
+    private Vector2 direction = Vector2.Up;
+
+    public Vector2 Direction { get => direction; set => direction = value; }
+
+    private RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+
+    private int distance;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        distance = randomNumberGenerator.RandiRange(150, 250);
         type = availableOptions[(int)(GD.Randi() % availableOptions.Length)];
 
         switch (type)
@@ -31,6 +39,11 @@ public partial class Item : Area2D
                     break;
                 }
         }
+
+        Vector2 targetPosition = new Vector2(Position.X + (direction.X * distance), Position.Y + (direction.Y * distance));
+
+        GetTree().CreateTween().TweenProperty(this, "position", targetPosition, 0.5f);
+
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,6 +54,13 @@ public partial class Item : Area2D
 
     public void OnBodyEntered(PhysicsBody2D _body)
     {
+        Console.WriteLine(this.Name);
+        Console.WriteLine(this.CollisionLayer);
+        Console.WriteLine(this.CollisionMask);
+        Console.WriteLine(_body.Name);
+        Console.WriteLine(_body.CollisionLayer);
+        Console.WriteLine(_body.CollisionMask);
+
         switch (type)
         {
             case "laser":

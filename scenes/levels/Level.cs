@@ -8,11 +8,16 @@ public partial class Level : Node2D
 {
 	private PackedScene laserScene = GD.Load<PackedScene>("res://scenes/projectiles/laser.tscn");
     private PackedScene grenadeScene = GD.Load<PackedScene>("res://scenes/projectiles/grenade.tscn");
+    private PackedScene itemScene = GD.Load<PackedScene>("res://scenes/items/item.tscn");
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-
+        foreach (ItemContainer container in GetTree().GetNodesInGroup("Container"))
+        {
+            container.Open += OnContainerOpened;
+            //container.Connect(nameof(ItemContainer.Open), Callable.From(() => OnContainerOpened(Position, Position)));
+        }
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -61,6 +66,14 @@ public partial class Level : Node2D
     public void OnHousePlayerExited()
     {
         GetTree().CreateTween().TweenProperty(GetNode("Player/Camera2D"), "zoom", new Vector2(0.6f, 0.6f), 2);
+    }
+
+    public void OnContainerOpened(Vector2 position, Vector2 direction)
+    {
+        Item item = itemScene.Instantiate<Item>();
+        item.Position = position;
+        item.Direction = direction;
+        GetNode<Node2D>("Items").CallDeferred("add_child", item);
     }
 
 }
