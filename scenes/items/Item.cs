@@ -42,8 +42,10 @@ public partial class Item : Area2D
 
         Vector2 targetPosition = new Vector2(Position.X + (direction.X * distance), Position.Y + (direction.Y * distance));
 
-        GetTree().CreateTween().TweenProperty(this, "position", targetPosition, 0.5f);
-
+        Tween tween = GetTree().CreateTween();
+        tween.SetParallel(true);
+        tween.TweenProperty(this, "position", targetPosition, 0.5f);
+        tween.TweenProperty(this, "scale", new Vector2(1, 1), 0.3f).From(new Vector2(0, 0));
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
