@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://lsay2e0ca8qv"]
+[gd_scene load_steps=18 format=3 uid="uid://lsay2e0ca8qv"]
 
 [ext_resource type="PackedScene" uid="uid://bhd2unjfc825m" path="res://scenes/levels/level.tscn" id="1_gxgr5"]
 [ext_resource type="PackedScene" uid="uid://chcp2sx0tj4eu" path="res://scenes/objects/gate.tscn" id="2_akg83"]
@@ -14,9 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://03c3xoyfi3ao" path="res://scenes/houses/house.tscn" id="10_e7oly"]
 [ext_resource type="PackedScene" uid="uid://cg206r6eyaj8r" path="res://scenes/objects/steam_vent.tscn" id="11_r58k6"]
 [ext_resource type="PackedScene" uid="uid://cmk8bi8jq0ack" path="res://scenes/objects/light_fan_animation.tscn" id="12_bue8s"]
-[ext_resource type="PackedScene" uid="uid://8jeq715p2u5q" path="res://scenes/items/item.tscn" id="15_powjk"]
-[ext_resource type="PackedScene" uid="uid://da38lyg16ibtw" path="res://scenes/container/box_container.tscn" id="16_7b4no"]
-[ext_resource type="PackedScene" uid="uid://bu2cx1ykkvvxa" path="res://scenes/container/toilet_container.tscn" id="17_q7iht"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sta1n"]
 resource_name = "Walls"
@@ -54,6 +51,11 @@ sources/1 = SubResource("TileSetAtlasSource_pjbkj")
 
 [node name="Outside" instance=ExtResource("1_gxgr5")]
 script = ExtResource("2_paffm")
+
+[node name="Gate" parent="." index="1" instance=ExtResource("2_akg83")]
+z_index = 1
+position = Vector2(561, -665)
+metadata/_edit_lock_ = true
 
 [node name="Soil" type="Sprite2D" parent="Ground" index="0"]
 texture_repeat = 2
@@ -112,24 +114,10 @@ position = Vector2(-120, 411)
 position = Vector2(-1745, 2390)
 frame_progress = 0.0586865
 
-[node name="Gate" parent="." index="1" instance=ExtResource("2_akg83")]
-position = Vector2(561, -665)
-metadata/_edit_lock_ = true
-
-[node name="BoxContainer" parent="." index="2" instance=ExtResource("16_7b4no")]
-position = Vector2(1208, 666)
-collision_layer = 1
-collision_mask = 1
-
-[node name="ToiletContainer" parent="." index="3" instance=ExtResource("17_q7iht")]
-position = Vector2(1229, 341)
-collision_layer = 1
-collision_mask = 1
-
-[node name="Player" parent="." index="6"]
+[node name="Player" parent="." index="5"]
+z_index = 2
 position = Vector2(604, 313)
 
-[node name="Item" parent="." index="8" instance=ExtResource("15_powjk")]
-position = Vector2(386, 467)
-
 [connection signal="PlayerEntered" from="Gate" to="." method="OnGatePlayerEntered"]
+[connection signal="PlayerEntered" from="Ground/House" to="." method="OnHousePlayerEntered"]
+[connection signal="PlayerExited" from="Ground/House" to="." method="OnHousePlayerExited"]
