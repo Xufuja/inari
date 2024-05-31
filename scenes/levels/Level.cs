@@ -18,6 +18,10 @@ public partial class Level : Node2D
             container.Open += OnContainerOpened;
             //container.Connect(nameof(ItemContainer.Open), Callable.From(() => OnContainerOpened(Position, Position)));
         }
+        foreach (Scout scout in GetTree().GetNodesInGroup("Scouts"))
+        {
+            scout.Laser += OnScoutLaser;
+        }
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,6 +37,11 @@ public partial class Level : Node2D
     }
 
     public void OnLaserFired(Vector2 position, Vector2 direction)
+    {
+        CreateLaser(position, direction);
+    }
+
+    public void CreateLaser(Vector2 position, Vector2 direction)
     {
         Laser laser = laserScene.Instantiate<Laser>();
 
@@ -59,6 +68,11 @@ public partial class Level : Node2D
         item.Position = position;
         item.Direction = direction;
         GetNode<Node2D>("Items").CallDeferred("add_child", item);
+    }
+
+    public void OnScoutLaser(Vector2 position, Vector2 direction)
+    {
+        CreateLaser(position, direction);
     }
 
 }

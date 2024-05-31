@@ -29,6 +29,7 @@ public partial class Player : CharacterBody2D
 		Vector2 direction = Input.GetVector("left", "right", "up", "down");
 		Velocity = new Vector2(direction.X * speed, direction.Y * speed);
 		MoveAndSlide();
+        GetNode<Globals>("/root/Globals").PlayerPosition = GlobalPosition;
 
         LookAt(GetGlobalMousePosition());
 

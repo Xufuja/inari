@@ -8,6 +8,7 @@ public partial class Globals : Node
     private int _laserAmount = 20;
     private int _grenadeAmount = 5;
     private int _health = 60;
+    private Vector2 _playerPosition;
 
     public int LaserAmount
     {
@@ -37,6 +38,7 @@ public partial class Globals : Node
         }
     }
 
+    public Vector2 PlayerPosition { get => _playerPosition; set => _playerPosition = value; }
 
     [Signal]
     public delegate void HealthChangeEventHandler();
