@@ -54,7 +54,7 @@ public partial class Item : Area2D
         Rotation += rotationSpeed * (float)delta;
     }
 
-    public void OnBodyEntered(PhysicsBody2D _body)
+    public void OnBodyEntered(PhysicsBody2D body)
     {
         //Editing collission settings is broken for inherited scenes: https://github.com/godotengine/godot/issues/65193
 

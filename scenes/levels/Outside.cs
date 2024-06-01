@@ -8,7 +8,7 @@ public partial class Outside : Level
 	{
 	}
 
-    public void OnGatePlayerEntered(PhysicsBody2D _body)
+    public void OnGatePlayerEntered(PhysicsBody2D body)
     {
         Tween tween = CreateTween();
         tween.TweenProperty(GetNode("Player"), "speed", 0, 0.5f);

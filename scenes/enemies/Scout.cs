@@ -5,6 +5,7 @@ public partial class Scout : CharacterBody2D
 {
 	private bool playerNearby = false;
     private bool canLaser = true;
+	private bool alternate = true;
 
     [Signal]
     public delegate void LaserEventHandler(Vector2 position, Vector2 direction);
@@ -19,8 +20,10 @@ public partial class Scout : CharacterBody2D
 		{
 			if (canLaser)
 			{
-				Vector2 position = GetNode<Marker2D>("LaserSpawnPositions/Marker2D").GlobalPosition;
-				Vector2 direction = (playerPosition - Position).Normalized();
+                Vector2 position = GetNode<Node2D>("LaserSpawnPositions").GetChild<Marker2D>(alternate ? 0 : 1).GlobalPosition;
+                alternate = !alternate;
+                Vector2 direction = (playerPosition - Position).Normalized();
+
                 EmitSignal(SignalName.Laser, position, direction);
 				canLaser = false;
 				GetNode<Timer>("LaserCooldown").Start();

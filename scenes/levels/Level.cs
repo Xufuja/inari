@@ -31,7 +31,7 @@ public partial class Level : Node2D
     }
 
    
-    public void OnGatePlayerExited(PhysicsBody2D _body)
+    public void OnGatePlayerExited(PhysicsBody2D body)
     {
         Console.WriteLine("Player Exited Gate!");
     }

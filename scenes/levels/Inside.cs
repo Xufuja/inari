@@ -8,7 +8,7 @@ public partial class Inside : Level
 	{
 	}
 
-	public void OnExitGateAreaBodyEntered(PhysicsBody2D _body)
+	public void OnExitGateAreaBodyEntered(PhysicsBody2D body)
 	{
         Tween tween = CreateTween();
         tween.TweenProperty(GetNode("Player"), "speed", 0, 0.5f);

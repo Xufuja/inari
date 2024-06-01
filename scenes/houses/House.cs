@@ -18,12 +18,12 @@ public partial class House : Area2D
 	public override void _Process(double delta)
 	{
 	}
-	public void OnBodyEntered(Node2D _body)
+	public void OnBodyEntered(Node2D body)
 	{
         EmitSignal(SignalName.PlayerEntered);
     }
 
-	public void OnBodyExited(Node2D _body)
+	public void OnBodyExited(Node2D body)
 	{
         EmitSignal(SignalName.PlayerExited);
     }
