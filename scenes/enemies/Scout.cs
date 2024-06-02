@@ -45,4 +45,9 @@ public partial class Scout : CharacterBody2D
 	{
 		canLaser = true;
 	}
+
+	public void Hit()
+	{
+		Console.WriteLine("Scout Hit!");
+	}
 }

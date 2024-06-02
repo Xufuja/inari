@@ -70,4 +70,9 @@ public partial class Player : CharacterBody2D
     {
         canGrenade = true;
     }
+
+    public void Hit()
+    {
+        Console.WriteLine("Player Hit!");
+    }
 }
