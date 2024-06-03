@@ -3,51 +3,70 @@ using System;
 
 public partial class Scout : CharacterBody2D
 {
-	private bool playerNearby = false;
+    private bool playerNearby = false;
     private bool canLaser = true;
-	private bool alternate = true;
+    private bool alternate = true;
+    private int health = 30;
+    private bool invulnerable = false;
 
     [Signal]
     public delegate void LaserEventHandler(Vector2 position, Vector2 direction);
 
     public override void _Process(double delta)
-	{
-		Vector2 playerPosition = GetNode<Globals>("/root/Globals").PlayerPosition;
+    {
+        Vector2 playerPosition = GetNode<Globals>("/root/Globals").PlayerPosition;
 
         LookAt(playerPosition);
 
-		if (playerNearby)
-		{
-			if (canLaser)
-			{
+        if (playerNearby)
+        {
+            if (canLaser)
+            {
                 Vector2 position = GetNode<Node2D>("LaserSpawnPositions").GetChild<Marker2D>(alternate ? 0 : 1).GlobalPosition;
                 alternate = !alternate;
                 Vector2 direction = (playerPosition - Position).Normalized();
 
                 EmitSignal(SignalName.Laser, position, direction);
-				canLaser = false;
-				GetNode<Timer>("LaserCooldown").Start();
+                canLaser = false;
+                GetNode<Timer>("Timers/LaserCooldown").Start();
             }
-         
-		}
-	}
-	public void OnAttackAreaBodyEntered(PhysicsBody2D body)
-	{
-		playerNearby = true;
-	}
 
-	public void OnAttackAreaBodyExited(PhysicsBody2D body)
-	{
-		playerNearby = false;
-	}
+        }
+    }
+    public void OnAttackAreaBodyEntered(PhysicsBody2D body)
+    {
+        playerNearby = true;
+    }
 
-	public void OnLaserCooldownTimeout()
-	{
-		canLaser = true;
-	}
+    public void OnAttackAreaBodyExited(PhysicsBody2D body)
+    {
+        playerNearby = false;
+    }
 
-	public void Hit()
-	{
-		Console.WriteLine("Scout Hit!");
-	}
+    public void OnLaserCooldownTimeout()
+    {
+        canLaser = true;
+    }
+
+    public void Hit()
+    {
+        if (!invulnerable)
+        {
+            health -= 10;
+
+            invulnerable = true;
+
+            if (health <= 0)
+            {
+                QueueFree();
+            }
+
+            GetNode<Timer>("Timers/HitCooldown").Start();
+        }
+    }
+
+    public void OnHitCooldownTimeout()
+    {
+        invulnerable = false;
+    }
 }
