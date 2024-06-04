@@ -73,6 +73,6 @@ public partial class Player : CharacterBody2D
 
     public void Hit()
     {
-        Console.WriteLine("Player Hit!");
+        GetNode<Globals>("/root/Globals").Health -= 10;
     }
 }

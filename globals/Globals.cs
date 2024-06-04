@@ -9,6 +9,7 @@ public partial class Globals : Node
     private int _grenadeAmount = 5;
     private int _health = 60;
     private Vector2 _playerPosition;
+    private bool playerVulnerable = true;
 
     public int LaserAmount
     {
@@ -33,7 +34,17 @@ public partial class Globals : Node
         get => _health;
         set
         {
-            _health = value;
+            if (value > _health)
+            {
+                _health = Math.Min(value, 100);
+            }
+            else if (playerVulnerable)
+            {
+                _health = value;
+                playerVulnerable = false;
+                PlayerInvulnerableTimer();
+            }
+
             EmitSignal(SignalName.HealthChange);
         }
     }
@@ -57,5 +68,11 @@ public partial class Globals : Node
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
+    }
+
+    public async void PlayerInvulnerableTimer()
+    {
+        await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
+        playerVulnerable = true;
     }
 }
