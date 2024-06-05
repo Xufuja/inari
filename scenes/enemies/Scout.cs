@@ -62,11 +62,13 @@ public partial class Scout : CharacterBody2D
             }
 
             GetNode<Timer>("Timers/HitCooldown").Start();
+            ((ShaderMaterial)GetNode<Sprite2D>("Sprite2D").Material).SetShaderParameter("progress", 1);
         }
     }
 
     public void OnHitCooldownTimeout()
     {
         invulnerable = false;
+        ((ShaderMaterial)GetNode<Sprite2D>("Sprite2D").Material).SetShaderParameter("progress", 0);
     }
 }
