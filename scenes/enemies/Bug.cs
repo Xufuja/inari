@@ -24,7 +24,8 @@ public partial class Bug : CharacterBody2D
 	public void OnAttackAreaBodyEntered(PhysicsBody2D body)
 	{
 		playerNear = true;
-	}
+        GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("Attack");
+    }
 
 	public void OnAttackAreaBodyExited(PhysicsBody2D body)
 	{
@@ -34,10 +35,21 @@ public partial class Bug : CharacterBody2D
 	public void OnNoticeAreaBodyEntered(PhysicsBody2D body)
 	{
 		active = true;
+		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("Walk");
 	}
 
 	public void OnNoticeAreaBodyExited(PhysicsBody2D body)
 	{
 		active = false;
+		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Stop();
+    }
+
+	public void OnAnimatedSprite2DAnimationFinished()
+	{
+		if (playerNear)
+		{
+			GetNode<Globals>("/root/Globals").Health -= 10;
+
+        }
 	}
 }
