@@ -7,6 +7,7 @@ public partial class Bug : CharacterBody2D
 	private int speed = 300;
 	private bool vulnerable = true;
 	private bool playerNear = false;
+	private int health = 20;
 
 	public override void _Process(double delta)
 	{
@@ -49,7 +50,32 @@ public partial class Bug : CharacterBody2D
 		if (playerNear)
 		{
 			GetNode<Globals>("/root/Globals").Health -= 10;
-
+			GetNode<Timer>("Timers/AttackTimer").Start();
         }
+	}
+
+	public void OnAttackTimerTimeout()
+	{
+        GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("Attack");
+    }
+
+	public void OnHitTimerTimeout()
+	{
+		vulnerable = true;
+	}
+
+	public void Hit()
+	{
+		if (vulnerable)
+		{
+			vulnerable = false;
+            GetNode<Timer>("Timers/HitTimer").Start();
+			health -= 10;
+        }
+
+		if (health <= 0)
+		{
+			QueueFree();
+		}
 	}
 }

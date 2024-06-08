@@ -145,7 +145,7 @@ radius = 503.081
 [sub_resource type="CircleShape2D" id="CircleShape2D_wm8y4"]
 radius = 98.0051
 
-[node name="Bug" type="CharacterBody2D"]
+[node name="Bug" type="CharacterBody2D" groups=["Entity"]]
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_bod62")
@@ -172,8 +172,19 @@ collision_layer = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("CircleShape2D_wm8y4")
 
+[node name="Timers" type="Node" parent="."]
+
+[node name="AttackTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="HitTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimatedSprite2DAnimationFinished"]
 [connection signal="body_entered" from="NoticeArea" to="." method="OnNoticeAreaBodyEntered"]
 [connection signal="body_exited" from="NoticeArea" to="." method="OnNoticeAreaBodyExited"]
 [connection signal="body_entered" from="AttackArea" to="." method="OnAttackAreaBodyEntered"]
 [connection signal="body_exited" from="AttackArea" to="." method="OnAttackAreaBodyExited"]
+[connection signal="timeout" from="Timers/AttackTimer" to="." method="OnAttackTimerTimeout"]
+[connection signal="timeout" from="Timers/HitTimer" to="." method="OnHitTimerTimeout"]
