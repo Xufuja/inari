@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://bqdmnuuh0fglc"]
+[gd_scene load_steps=43 format=3 uid="uid://bqdmnuuh0fglc"]
 
 [ext_resource type="Script" path="res://scenes/enemies/Bug.cs" id="1_bod62"]
 [ext_resource type="Texture2D" uid="uid://h8n6mlo2k0pl" path="res://graphics/enemies/bug/attack/00010.png" id="1_ju2eq"]
+[ext_resource type="Shader" path="res://scenes/enemies/bug.gdshader" id="2_mp0m5"]
 [ext_resource type="Texture2D" uid="uid://ro8s288f13h4" path="res://graphics/enemies/bug/attack/00011.png" id="2_x1qwi"]
 [ext_resource type="Texture2D" uid="uid://c7uytkxxww8vc" path="res://graphics/enemies/bug/attack/00012.png" id="3_j5xd8"]
 [ext_resource type="Texture2D" uid="uid://cparcco6vq62n" path="res://graphics/enemies/bug/attack/00013.png" id="4_lhfnu"]
@@ -31,6 +32,12 @@
 [ext_resource type="Texture2D" uid="uid://drdphswoi8m7e" path="res://graphics/enemies/bug/walk/00006.png" id="28_mpl35"]
 [ext_resource type="Texture2D" uid="uid://chl3kaheq5ley" path="res://graphics/enemies/bug/walk/00007.png" id="29_yhv31"]
 [ext_resource type="Texture2D" uid="uid://cpi2wcgeim0pj" path="res://graphics/enemies/bug/walk/00008.png" id="30_8qqpl"]
+[ext_resource type="Texture2D" uid="uid://c7qki5vulagiq" path="res://graphics/explosions/grunge.png" id="33_xfucm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d0rb1"]
+shader = ExtResource("2_mp0m5")
+shader_parameter/color = Color(0.803922, 0.862745, 0.901961, 1)
+shader_parameter/progress = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_btn4q"]
 animations = [{
@@ -145,12 +152,40 @@ radius = 503.081
 [sub_resource type="CircleShape2D" id="CircleShape2D_wm8y4"]
 radius = 98.0051
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vanya"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_pvivm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_23b35"]
+curve = SubResource("Curve_pvivm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ou3vt"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.5
+direction = Vector3(1, 1, 0)
+spread = 180.0
+initial_velocity_min = 80.0
+initial_velocity_max = 120.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_23b35")
+anim_offset_max = 1.0
+
 [node name="Bug" type="CharacterBody2D" groups=["Entity"]]
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_bod62")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_d0rb1")
 rotation = 1.5708
 scale = Vector2(0.07, 0.07)
 sprite_frames = SubResource("SpriteFrames_btn4q")
@@ -179,6 +214,18 @@ one_shot = true
 
 [node name="HitTimer" type="Timer" parent="Timers"]
 wait_time = 0.2
+one_shot = true
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="HitParticles" type="GPUParticles2D" parent="Particles"]
+modulate = Color(0.137255, 0.117647, 0.156863, 1)
+material = SubResource("CanvasItemMaterial_vanya")
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_ou3vt")
+texture = ExtResource("33_xfucm")
+lifetime = 0.5
 one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimatedSprite2DAnimationFinished"]
