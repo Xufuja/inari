@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://03c3xoyfi3ao" path="res://scenes/houses/house.tscn" id="10_e7oly"]
 [ext_resource type="PackedScene" uid="uid://cg206r6eyaj8r" path="res://scenes/objects/steam_vent.tscn" id="11_r58k6"]
 [ext_resource type="PackedScene" uid="uid://cmk8bi8jq0ack" path="res://scenes/objects/light_fan_animation.tscn" id="12_bue8s"]
-[ext_resource type="PackedScene" uid="uid://bqdmnuuh0fglc" path="res://scenes/enemies/bug.tscn" id="15_077cs"]
+[ext_resource type="PackedScene" uid="uid://c7oug7kl8mkyg" path="res://scenes/enemies/drone.tscn" id="15_sx32v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sta1n"]
 resource_name = "Walls"
@@ -115,8 +115,8 @@ position = Vector2(-120, 411)
 position = Vector2(-1745, 2390)
 frame_progress = 0.0586865
 
-[node name="Bug" parent="Enemies" index="0" instance=ExtResource("15_077cs")]
-position = Vector2(1045, 540)
+[node name="Drone" parent="Enemies" index="0" instance=ExtResource("15_sx32v")]
+position = Vector2(1115, 907)
 
 [node name="Player" parent="." index="7"]
 z_index = 2
