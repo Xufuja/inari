@@ -8,6 +8,12 @@ public partial class Drone : CharacterBody2D
     private bool vulnerable = true;
     private int health = 50;
 
+    public override void _Ready()
+    {
+        GetNode<Sprite2D>("Explosion").Hide();
+        GetNode<Sprite2D>("DroneSprite").Show();
+    }
+
     public override void _Process(double _delta)
     {
         Vector2 playerPosition = GetNode<Globals>("/root/Globals").PlayerPosition;
@@ -32,8 +38,7 @@ public partial class Drone : CharacterBody2D
 
         if (health <= 0)
         {
-            await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
-            QueueFree();
+            GetNode<AnimationPlayer>("AnimationPlayer").Play("Explosion");
         }
     }
 
