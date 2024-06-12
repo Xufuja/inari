@@ -24,7 +24,7 @@ public partial class Player : CharacterBody2D
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double _delta)
+	public override void _Process(double delta)
 	{
 		Vector2 direction = Input.GetVector("left", "right", "up", "down");
 		Velocity = new Vector2(direction.X * speed, direction.Y * speed);

@@ -14,7 +14,7 @@ public partial class Drone : CharacterBody2D
         GetNode<Sprite2D>("DroneSprite").Show();
     }
 
-    public override void _Process(double _delta)
+    public override void _Process(double delta)
     {
         Vector2 playerPosition = GetNode<Globals>("/root/Globals").PlayerPosition;
 
@@ -23,7 +23,12 @@ public partial class Drone : CharacterBody2D
             LookAt(playerPosition);
             Vector2 direction = (playerPosition - Position).Normalized();
             Velocity = new Vector2(direction.X * speed, direction.Y * speed);
-            MoveAndSlide();
+            KinematicCollision2D collision = MoveAndCollide(new Vector2((float)(Velocity.X * delta), (float)(Velocity.Y * delta)));
+
+            if (collision != null)
+            {
+                GetNode<AnimationPlayer>("AnimationPlayer").Play("Explosion");
+            }
         }
     }
 
