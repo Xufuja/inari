@@ -1,8 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7oug7kl8mkyg"]
+[gd_scene load_steps=11 format=3 uid="uid://c7oug7kl8mkyg"]
 
 [ext_resource type="Texture2D" uid="uid://dxls556wlgvuu" path="res://graphics/enemies/drone.png" id="1_l3yyb"]
 [ext_resource type="Script" path="res://scenes/enemies/Drone.cs" id="1_pq2rt"]
+[ext_resource type="Shader" path="res://scenes/enemies/drone.gdshader" id="2_k577t"]
 [ext_resource type="Texture2D" uid="uid://c6cxu4re76dtk" path="res://graphics/explosions/explosion_3.png" id="3_1db3g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l6huc"]
+shader = ExtResource("2_k577t")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/progress = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aqcgm"]
 radius = 75.0267
@@ -64,6 +70,20 @@ tracks/3/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"StopMovement"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_x8cy3"]
 length = 0.001
@@ -92,7 +112,7 @@ collision_mask = 15
 script = ExtResource("1_pq2rt")
 
 [node name="DroneSprite" type="Sprite2D" parent="."]
-visible = false
+material = SubResource("ShaderMaterial_l6huc")
 rotation = 1.5708
 texture = ExtResource("1_l3yyb")
 
@@ -100,6 +120,7 @@ texture = ExtResource("1_l3yyb")
 shape = SubResource("CircleShape2D_aqcgm")
 
 [node name="NoticeArea" type="Area2D" parent="."]
+collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea"]
 shape = SubResource("CircleShape2D_ves2j")

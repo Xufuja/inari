@@ -22,7 +22,7 @@ public partial class Grenade : RigidBody2D
 
             foreach (Node target in targets)
             {
-                bool inRange = ((Vector2)GetProperty(target, "GlobalPosition")).DistanceTo(GlobalPosition) < explosionRadius;
+                bool inRange = ((Vector2)GetNode<Globals>("/root/Globals").GetProperty(target, "GlobalPosition")).DistanceTo(GlobalPosition) < explosionRadius;
 
                 if (target.HasMethod("Hit") && inRange)
                 {
@@ -45,9 +45,6 @@ public partial class Grenade : RigidBody2D
         explosionActive = true;
     }
 
-    public object GetProperty(object target, String property)
-    {
-        return target.GetType().GetProperty(property).GetValue(target, null);
-    }
+   
 
 }

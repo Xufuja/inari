@@ -75,4 +75,8 @@ public partial class Globals : Node
         await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
         playerVulnerable = true;
     }
+    public object GetProperty(object target, String property)
+    {
+        return target.GetType().GetProperty(property).GetValue(target, null);
+    }
 }

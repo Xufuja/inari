@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c5klibbkwsaq1"]
+[gd_scene load_steps=31 format=3 uid="uid://c5klibbkwsaq1"]
 
 [ext_resource type="PackedScene" uid="uid://bhd2unjfc825m" path="res://scenes/levels/level.tscn" id="1_hek13"]
 [ext_resource type="TileSet" uid="uid://bt08uu0emdn03" path="res://scenes/levels/house.tres" id="2_7pwkj"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://c38yt2do6keyh" path="res://graphics/objects/infestation/small_3.png" id="21_t1l5r"]
 [ext_resource type="Texture2D" uid="uid://c2jr0uc7rspyv" path="res://graphics/objects/infestation/small_4.png" id="22_xdtmf"]
 [ext_resource type="Texture2D" uid="uid://dsmvppiqyou0m" path="res://graphics/objects/infestation/spikes.png" id="23_cakjy"]
+[ext_resource type="PackedScene" uid="uid://c7oug7kl8mkyg" path="res://scenes/enemies/drone.tscn" id="24_s17h6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pv7cb"]
 size = Vector2(366, 753)
@@ -191,7 +192,6 @@ texture = ExtResource("7_qv8qo")
 
 [node name="Ground" parent="." index="1"]
 metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground" index="0"]
 z_index = -2
@@ -259,7 +259,8 @@ position = Vector2(-1134, -2506)
 position = Vector2(976, -2609)
 
 [node name="BoxContainer2" parent="Ground" index="16" instance=ExtResource("8_nsmr5")]
-position = Vector2(2480, 2209)
+position = Vector2(2419, 1949)
+metadata/_edit_group_ = true
 
 [node name="BoxContainer3" parent="Ground" index="17" instance=ExtResource("8_nsmr5")]
 position = Vector2(-948, 4219)
@@ -367,7 +368,10 @@ metadata/_edit_lock_ = true
 position = Vector2(4095, -390.5)
 shape = SubResource("RectangleShape2D_pv7cb")
 
-[node name="Player" parent="." index="7"]
+[node name="Drone" parent="Enemies" index="0" instance=ExtResource("24_s17h6")]
+position = Vector2(-1532, 3045)
+
+[node name="Player" parent="." index="8"]
 position = Vector2(3515, -381)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
@@ -376,7 +380,7 @@ metadata/_edit_lock_ = true
 texture = ExtResource("6_kqgl7")
 texture_scale = 3.0
 
-[node name="Lights" parent="." index="8"]
+[node name="Lights" parent="." index="9"]
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
