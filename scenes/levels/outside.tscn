@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://lsay2e0ca8qv"]
+[gd_scene load_steps=20 format=3 uid="uid://lsay2e0ca8qv"]
 
 [ext_resource type="PackedScene" uid="uid://bhd2unjfc825m" path="res://scenes/levels/level.tscn" id="1_gxgr5"]
 [ext_resource type="PackedScene" uid="uid://chcp2sx0tj4eu" path="res://scenes/objects/gate.tscn" id="2_akg83"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://03c3xoyfi3ao" path="res://scenes/houses/house.tscn" id="10_e7oly"]
 [ext_resource type="PackedScene" uid="uid://cg206r6eyaj8r" path="res://scenes/objects/steam_vent.tscn" id="11_r58k6"]
 [ext_resource type="PackedScene" uid="uid://cmk8bi8jq0ack" path="res://scenes/objects/light_fan_animation.tscn" id="12_bue8s"]
-[ext_resource type="PackedScene" uid="uid://c7oug7kl8mkyg" path="res://scenes/enemies/drone.tscn" id="15_sx32v"]
+[ext_resource type="PackedScene" uid="uid://d0o6cs7qr666n" path="res://scenes/enemies/car.tscn" id="15_tql81"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sta1n"]
 resource_name = "Walls"
@@ -50,6 +50,12 @@ tile_size = Vector2i(390, 390)
 sources/0 = SubResource("TileSetAtlasSource_sta1n")
 sources/1 = SubResource("TileSetAtlasSource_pjbkj")
 
+[sub_resource type="Curve2D" id="Curve2D_ysa7r"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -721, 783, -352.778, -372.937, 352.778, 372.937, -142, 1316, 383.016, 796.27, -383.016, -796.27, 909, 2681, 0, 0, 0, 0, 1375, 3664, 0, 0, 0, 0, 1104, 4630, 0, 0, 0, 0, 162, 5372, 0, 0, 0, 0, -637, 5496, 0, 0, 0, 0, -1579, 5695, 656.442, 694.497, -656.442, -694.497, -2978, 5182, 0, 0, 0, 0, -3793, 4018, 0, 0, 0, 0, -3907, 2419, 0, 0, 0, 0, -3203, 1449, 0, 0, 0, 0, -2528, 817, 0, 0, 0, 0, -1531, 505, 0, 0, 0, 0, -721, 783)
+}
+point_count = 15
+
 [node name="Outside" instance=ExtResource("1_gxgr5")]
 script = ExtResource("2_paffm")
 
@@ -63,7 +69,7 @@ texture_repeat = 2
 position = Vector2(662, 403)
 texture = ExtResource("2_ceh3p")
 region_enabled = true
-region_rect = Rect2(5000, 3000, 16000, 10000)
+region_rect = Rect2(5000, 3000, 16000, 12000)
 metadata/_edit_lock_ = true
 
 [node name="Decoration" type="Sprite2D" parent="Ground" index="1"]
@@ -115,9 +121,6 @@ position = Vector2(-120, 411)
 position = Vector2(-1745, 2390)
 frame_progress = 0.0586865
 
-[node name="Drone" parent="Enemies" index="0" instance=ExtResource("15_sx32v")]
-position = Vector2(1115, 907)
-
 [node name="Player" parent="." index="7"]
 z_index = 2
 position = Vector2(604, 313)
@@ -125,6 +128,13 @@ position = Vector2(604, 313)
 [node name="Lights" parent="." index="8"]
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+
+[node name="CarPath" type="Path2D" parent="." index="10"]
+curve = SubResource("Curve2D_ysa7r")
+
+[node name="Car" parent="CarPath" index="0" instance=ExtResource("15_tql81")]
+position = Vector2(-721, 783)
+rotation = 0.744055
 
 [connection signal="PlayerEntered" from="Gate" to="." method="OnGatePlayerEntered"]
 [connection signal="PlayerEntered" from="Ground/House" to="." method="OnHousePlayerEntered"]
