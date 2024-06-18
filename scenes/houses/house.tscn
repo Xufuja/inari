@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://03c3xoyfi3ao"]
+[gd_scene load_steps=8 format=3 uid="uid://03c3xoyfi3ao"]
 
 [ext_resource type="Script" path="res://scenes/houses/House.cs" id="1_j0rak"]
 [ext_resource type="TileSet" uid="uid://bt08uu0emdn03" path="res://scenes/levels/house.tres" id="2_i6yx5"]
 [ext_resource type="PackedScene" uid="uid://liccjl1xe54j" path="res://scenes/objects/simple_light.tscn" id="2_jhivr"]
 [ext_resource type="PackedScene" uid="uid://cmi1sxcqhfyit" path="res://scenes/objects/wall_light.tscn" id="3_cxadk"]
+[ext_resource type="PackedScene" uid="uid://da38lyg16ibtw" path="res://scenes/container/box_container.tscn" id="5_l0g84"]
+[ext_resource type="PackedScene" uid="uid://bu2cx1ykkvvxa" path="res://scenes/container/toilet_container.tscn" id="6_y5ig6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qmkd5"]
 size = Vector2(2873, 2846)
@@ -54,6 +56,15 @@ rotation = 6.28319
 [node name="WallLight4" parent="." instance=ExtResource("3_cxadk")]
 position = Vector2(585, -1275)
 rotation = 6.28319
+
+[node name="BoxContainer" parent="." instance=ExtResource("5_l0g84")]
+position = Vector2(-824, 914)
+
+[node name="BoxContainer2" parent="." instance=ExtResource("5_l0g84")]
+position = Vector2(605, 438)
+
+[node name="ToiletContainer" parent="." instance=ExtResource("6_y5ig6")]
+position = Vector2(-1073, -1046)
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
 [connection signal="body_exited" from="." to="." method="OnBodyExited"]
