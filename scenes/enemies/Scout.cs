@@ -33,6 +33,7 @@ public partial class Scout : CharacterBody2D
 
         }
     }
+
     public void OnAttackAreaBodyEntered(PhysicsBody2D body)
     {
         playerNearby = true;
