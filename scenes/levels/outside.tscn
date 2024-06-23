@@ -230,7 +230,7 @@ position = Vector2(2452, 34)
 position = Vector2(1076, 4666)
 
 [node name="Hunter" parent="Enemies" index="0" instance=ExtResource("16_sfn7m")]
-position = Vector2(3303, 1100)
+position = Vector2(1001, 1053)
 
 [node name="Player" parent="." index="7"]
 z_index = 2
@@ -275,6 +275,8 @@ shape = SubResource("RectangleShape2D_bjgp3")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="12"]
 navigation_polygon = SubResource("NavigationPolygon_tyldm")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [connection signal="PlayerEntered" from="Gate" to="." method="OnGatePlayerEntered"]
 [connection signal="PlayerEntered" from="Ground/House" to="." method="OnHousePlayerEntered"]
