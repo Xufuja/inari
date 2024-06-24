@@ -21,15 +21,11 @@ public partial class UI : CanvasLayer
         //The "new" way of connecting signals is bugged and will return "Cannot access a disposed object" errors: //https://github.com/godotengine/godot/issues/70414
         if (Globals.CLASSIC_SIGNALS)
         {
-            globals.Connect(nameof(globals.HealthChange), Callable.From(UpdateStatsText));
-            globals.Connect(nameof(globals.LaserAmountChange), Callable.From(UpdateStatsText));
-            globals.Connect(nameof(globals.GrenadeAmountChange), Callable.From(UpdateStatsText));
+            globals.Connect(nameof(globals.StatChange), Callable.From(UpdateStatsText));
         }
         else
         {
-            globals.HealthChange += UpdateStatsText;
-            globals.LaserAmountChange += UpdateStatsText;
-            globals.GrenadeAmountChange += UpdateStatsText;
+            globals.StatChange += UpdateStatsText;
         }
 
         laserLabel = GetNode<Label>("LaserCounter/VBoxContainer/Label");
