@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://lsay2e0ca8qv"]
+[gd_scene load_steps=25 format=3 uid="uid://lsay2e0ca8qv"]
 
 [ext_resource type="PackedScene" uid="uid://bhd2unjfc825m" path="res://scenes/levels/level.tscn" id="1_gxgr5"]
 [ext_resource type="PackedScene" uid="uid://chcp2sx0tj4eu" path="res://scenes/objects/gate.tscn" id="2_akg83"]
@@ -16,8 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://cmk8bi8jq0ack" path="res://scenes/objects/light_fan_animation.tscn" id="12_bue8s"]
 [ext_resource type="PackedScene" uid="uid://da38lyg16ibtw" path="res://scenes/container/box_container.tscn" id="15_sny18"]
 [ext_resource type="PackedScene" uid="uid://d0o6cs7qr666n" path="res://scenes/enemies/car.tscn" id="15_tql81"]
-[ext_resource type="PackedScene" uid="uid://buiaeqw58y7aw" path="res://scenes/enemies/hunter.tscn" id="16_sfn7m"]
-[ext_resource type="PackedScene" uid="uid://b6gerje0r4jxa" path="res://scenes/enemies/scout.tscn" id="17_p33k8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sta1n"]
 resource_name = "Walls"
@@ -280,12 +278,6 @@ position = Vector2(2452, 34)
 
 [node name="BoxContainer6" parent="Ground" index="37" instance=ExtResource("15_sny18")]
 position = Vector2(1076, 4666)
-
-[node name="Hunter" parent="Enemies" index="0" instance=ExtResource("16_sfn7m")]
-position = Vector2(1001, 1053)
-
-[node name="Scout" parent="Enemies" index="1" instance=ExtResource("17_p33k8")]
-position = Vector2(187, 486)
 
 [node name="Player" parent="." index="7"]
 z_index = 2

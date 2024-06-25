@@ -54,7 +54,7 @@ public partial class Item : Area2D
         Rotation += rotationSpeed * (float)delta;
     }
 
-    public void OnBodyEntered(PhysicsBody2D body)
+    public async void OnBodyEntered(PhysicsBody2D body)
     {
         //Editing collission settings is broken for inherited scenes: https://github.com/godotengine/godot/issues/65193
 
@@ -77,6 +77,10 @@ public partial class Item : Area2D
                 }
         }
 
+        AudioStreamPlayer2D audioStreamPlayer2D = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+        audioStreamPlayer2D.Play();
+        GetNode<Sprite2D>("Sprite2D").Hide();
+        await ToSignal(audioStreamPlayer2D, "finihed");
         QueueFree();
     }
 }

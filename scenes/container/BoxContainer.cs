@@ -14,6 +14,7 @@ public partial class BoxContainer : ItemContainer
         if (!Opened)
         {
             GetNode<Sprite2D>("LidSprite").Hide();
+            GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D").Play();
             Node2D spawnPositions = GetNode<Node2D>("SpawnPositions");
 
             for (int i = 0; i < 5; i++)

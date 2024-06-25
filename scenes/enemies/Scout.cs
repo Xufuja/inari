@@ -57,13 +57,14 @@ public partial class Scout : CharacterBody2D
 
             invulnerable = true;
 
+            GetNode<Timer>("Timers/HitCooldown").Start();
+            ((ShaderMaterial)GetNode<Sprite2D>("Sprite2D").Material).SetShaderParameter("progress", 1);
+            GetNode<AudioStreamPlayer2D>("HitSound").Play();
+
             if (health <= 0)
             {
                 QueueFree();
             }
-
-            GetNode<Timer>("Timers/HitCooldown").Start();
-            ((ShaderMaterial)GetNode<Sprite2D>("Sprite2D").Material).SetShaderParameter("progress", 1);
         }
     }
 

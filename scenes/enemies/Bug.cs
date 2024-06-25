@@ -74,6 +74,7 @@ public partial class Bug : CharacterBody2D
             health -= 10;
             ((ShaderMaterial)GetNode<AnimatedSprite2D>("AnimatedSprite2D").Material).SetShaderParameter("progress", 0.9f);
             GetNode<GpuParticles2D>("Particles/HitParticles").Emitting = true;
+            GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D").Play();
         }
 
         if (health <= 0)

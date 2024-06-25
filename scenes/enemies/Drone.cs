@@ -67,6 +67,7 @@ public partial class Drone : CharacterBody2D
             GetNode<Timer>("HitTimer").Start();
             ((ShaderMaterial)GetNode<Sprite2D>("DroneSprite").Material).SetShaderParameter("progress", 1);
             health -= 10;
+            GetNode<AudioStreamPlayer2D>("Sounds/HitSound").Play();
         }
 
         if (health <= 0)
