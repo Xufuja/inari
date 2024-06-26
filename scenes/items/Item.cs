@@ -80,7 +80,7 @@ public partial class Item : Area2D
         AudioStreamPlayer2D audioStreamPlayer2D = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
         audioStreamPlayer2D.Play();
         GetNode<Sprite2D>("Sprite2D").Hide();
-        await ToSignal(audioStreamPlayer2D, "finihed");
+        await ToSignal(audioStreamPlayer2D, "finished");
         QueueFree();
     }
 }
