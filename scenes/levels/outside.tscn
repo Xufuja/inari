@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://lsay2e0ca8qv"]
+[gd_scene load_steps=28 format=3 uid="uid://lsay2e0ca8qv"]
 
 [ext_resource type="PackedScene" uid="uid://bhd2unjfc825m" path="res://scenes/levels/level.tscn" id="1_gxgr5"]
 [ext_resource type="PackedScene" uid="uid://chcp2sx0tj4eu" path="res://scenes/objects/gate.tscn" id="2_akg83"]
@@ -16,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://cmk8bi8jq0ack" path="res://scenes/objects/light_fan_animation.tscn" id="12_bue8s"]
 [ext_resource type="PackedScene" uid="uid://da38lyg16ibtw" path="res://scenes/container/box_container.tscn" id="15_sny18"]
 [ext_resource type="PackedScene" uid="uid://d0o6cs7qr666n" path="res://scenes/enemies/car.tscn" id="15_tql81"]
+[ext_resource type="PackedScene" uid="uid://buiaeqw58y7aw" path="res://scenes/enemies/hunter.tscn" id="16_vqafx"]
+[ext_resource type="PackedScene" uid="uid://b6gerje0r4jxa" path="res://scenes/enemies/scout.tscn" id="17_va0lq"]
+[ext_resource type="PackedScene" uid="uid://c7oug7kl8mkyg" path="res://scenes/enemies/drone.tscn" id="18_k34t2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sta1n"]
 resource_name = "Walls"
@@ -278,6 +281,39 @@ position = Vector2(2452, 34)
 
 [node name="BoxContainer6" parent="Ground" index="37" instance=ExtResource("15_sny18")]
 position = Vector2(1076, 4666)
+
+[node name="Hunter" parent="Enemies" index="0" instance=ExtResource("16_vqafx")]
+position = Vector2(3369, 2248)
+
+[node name="Scout" parent="Enemies" index="1" instance=ExtResource("17_va0lq")]
+position = Vector2(3271, 421)
+
+[node name="Scout2" parent="Enemies" index="2" instance=ExtResource("17_va0lq")]
+position = Vector2(4076, 2673)
+
+[node name="Scout3" parent="Enemies" index="3" instance=ExtResource("17_va0lq")]
+position = Vector2(2895, 3284)
+
+[node name="Scout4" parent="Enemies" index="4" instance=ExtResource("17_va0lq")]
+position = Vector2(1379, 2942)
+
+[node name="Scout5" parent="Enemies" index="5" instance=ExtResource("17_va0lq")]
+position = Vector2(858, 3997)
+
+[node name="Scout6" parent="Enemies" index="6" instance=ExtResource("17_va0lq")]
+position = Vector2(-742, 3229)
+
+[node name="Scout7" parent="Enemies" index="7" instance=ExtResource("17_va0lq")]
+position = Vector2(-3180, 4137)
+
+[node name="Scout8" parent="Enemies" index="8" instance=ExtResource("17_va0lq")]
+position = Vector2(-2379, 2839)
+
+[node name="Drone" parent="Enemies" index="9" instance=ExtResource("18_k34t2")]
+position = Vector2(-2085, 593)
+
+[node name="Drone2" parent="Enemies" index="10" instance=ExtResource("18_k34t2")]
+position = Vector2(763, 1652)
 
 [node name="Player" parent="." index="7"]
 z_index = 2
