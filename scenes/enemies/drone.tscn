@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bdvfs588svox3" path="res://audio/solid_impact.ogg" id="6_of2pd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l6huc"]
+resource_local_to_scene = true
 shader = ExtResource("2_k577t")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/progress = 0.0
